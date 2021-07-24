@@ -54,7 +54,7 @@ const spin = async (matrix: LedMatrixInstance, speed = 50, clear = true) => {
     // .drawLine(0, 0, matrix.width(), matrix.height())
     // .drawLine(matrix.width() - 1, 0, 0, matrix.height() - 1)
     .sync();
-
+    await wait(999999999);
 
 
     // // RGB fills
