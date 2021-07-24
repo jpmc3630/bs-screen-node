@@ -35,13 +35,13 @@ export const matrixOptions: MatrixOptions = {
   multiplexing: 17,
   parallel: 2,
   brightness: 100,
+  pixelMapperConfig: LedMatrixUtils.encodeMappers({ type: PixelMapperType.Flipper })
   // pixelMapperConfig: "Flipperzzz"
 
   // hardwareMapping: GpioMapping.Regular,
   // pixelMapperConfig: LedMatrixUtils.encodeMappers(
   //   { type: PixelMapperType.Chainlink }
   // ),
-  pixelMapperConfig: LedMatrixUtils.encodeMappers({ type: PixelMapperType.Flipper }),
 };
 
 export const runtimeOptions: RuntimeOptions = {
