@@ -91,7 +91,7 @@ export interface MatrixOptions {
    * The number of columns supported by a single display panel.
    * @default 32
    */
-  cols: 16 | 32 | 40 | 64;
+  cols: 8 | 16 | 32 | 40 | 64;
 
   /**
    * Disable the PWM hardware subsystem to create pulses.
@@ -242,7 +242,7 @@ export interface RuntimeOptions {
    *
    * @default 0
    */
-  gpioSlowdown: 0 | 1 | 2 | 3 | 4;
+  gpioSlowdown: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
 
