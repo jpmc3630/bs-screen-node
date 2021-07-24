@@ -32,7 +32,7 @@ export const matrixOptions: MatrixOptions = {
   rows: 16,
   cols: 8,
   chainLength: 8,
-  multiplexing: 18,
+  multiplexing: 17,
   parallel: 2,
   brightness: 100,
   pixelMapperConfig: "Flipper"
