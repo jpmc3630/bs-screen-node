@@ -35,7 +35,7 @@ export const matrixOptions: MatrixOptions = {
   multiplexing: 17,
   parallel: 2,
   brightness: 100,
-  pixelMapperConfig: "Flipper"
+  pixelMapperConfig: "Flipperzzz"
 
   // hardwareMapping: GpioMapping.Regular,
   // pixelMapperConfig: LedMatrixUtils.encodeMappers(
