@@ -46,7 +46,7 @@ const spin = async (matrix: LedMatrixInstance, speed = 50, clear = true) => {
     // draw a yellow circle around the display
     // .drawCircle(matrix.width() / 2, matrix.height() / 2, matrix.width() / 2 - 1)
     // draw a yellow rectangle
-    .drawRect(66, 2, 46, 14)
+    .drawRect(65, 1, 10, 5)
     // .drawRect(matrix.width() / 4, matrix.height() / 4, matrix.width() / 2, matrix.height() / 2)
     // sets the active color to red
     // .fgColor({ r: 255, g: 0, b: 0 })
