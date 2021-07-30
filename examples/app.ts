@@ -2,6 +2,14 @@
 
 // var io = require('socket.io-client');
 // const quote = require('shell-quote').quote;
+const opts = {
+  errorEventName:'error',
+      logDirectory:'logs',
+      fileNamePattern:'roll-<DATE>.log',
+      dateFormat:'YYYY.MM.DD'
+};
+
+const log = require('simple-node-logger').createRollingFileLogger( opts );
 
 import { io } from 'socket.io-client'
 
@@ -87,29 +95,20 @@ const render = async (message: string, color: any, outlineColor: any, bgColor: a
       return parseInt(x, 10);
     });
 
-    console.log('font height: ' + font.height())
-    // console.log('string width: ' + font.stringWidth(message))
-    
-    console.log('font info:')
-    console.log(font.stringWidth(message, -5))
-    console.log(font.stringWidth(message, 1))
-    console.log(font.stringWidth(message, 5))
-
-    
     // tally up the width of the entire text
     let textWidth = (16 - spacing) * message.split('').length
     
-    console.log('string width:')
-    console.log(63 - textWidth)
-    let x = 112 // start pos 1 pixel off the right of screen
+    // console.log('string width:')
+    // console.log(63 - textWidth)
+    let x = 122 // start pos 1 pixel off the right of screen
     
     matrix.afterSync((mat, dt, t) => {
       // console.log(x)
       // 63 offset for single second screen only, ytally rough width of text, 20 is a rough bit of spacing
       
-      if (x < (63 - textWidth)) {
+      if (x < (0 - (textWidth + 10))) {
         // x = 113 // just off the edge of screen
-        x = 112 // just on screen
+        x = 122 // just on screen
       }
       x = x - 1 // how many pixels we shift at once
 
@@ -149,11 +148,7 @@ const render = async (message: string, color: any, outlineColor: any, bgColor: a
           });
 
 
-      // if (go == false) {
-      //   return
-      // }
         timer = setTimeout(() => matrix.sync(), convertedSpeed);
-        // matrix.sync();
       
     });
 
@@ -173,9 +168,6 @@ const render = async (message: string, color: any, outlineColor: any, bgColor: a
 
 
 function startScreen(message: string, color: string, colorOutline: string, bgColor: string, speed: string, spacing: string) {
-  // console.log(socket.id)
-  // log.warn(socket.id);
-  
 
     // var cmdArgs = [
     //   '../text-scroller',
@@ -196,9 +188,6 @@ function startScreen(message: string, color: string, colorOutline: string, bgCol
     //   message
     // ];
 
-
-    // const sanitizedMessage = quote(message);
-    
     // run the screen
     render(message, color, colorOutline, bgColor, speed, spacing)
 
@@ -207,25 +196,27 @@ function startScreen(message: string, color: string, colorOutline: string, bgCol
 
 
 
-startScreen(ip, '180,50,80', '70,100,160', '0,0,0', '.3','1')
+startScreen(ip, '180,50,80', '70,100,160', '0,0,0', '1','0')
 
 socket.on('connect', function(socketId: string) {
   
-  // log.warn('connected to server');
-  console.log('connected to server')
+  log.warn('connected to server');
+  // console.log('connected to server')
   socket.emit('screenConnect', 'create');
   // startScreen('init patch', '180,50,80', '70,100,160', '0,0,0', '0.3','-1')
 
 
 
  socket.on('startMessage', function(data: any) {
-  // log.info(data[0]);
-  console.log('message: ' + data[0])
-  console.log('colour: ' + data[1].join())
-  console.log('outline: ' + data[2].join())
-  console.log('background: ' + data[3].join())
-  console.log('speed: ' + data[4])
-  console.log('kerning: ' + data[5])
+  
+  log.info(data[0]);
+
+  // console.log('message: ' + data[0])
+  // console.log('colour: ' + data[1].join())
+  // console.log('outline: ' + data[2].join())
+  // console.log('background: ' + data[3].join())
+  // console.log('speed: ' + data[4])
+  // console.log('kerning: ' + data[5])
 
   startScreen(data[0], data[1].join(), data[2].join(), data[3].join(), data[4], data[5])
 
